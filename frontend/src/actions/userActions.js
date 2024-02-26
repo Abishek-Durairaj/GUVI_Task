@@ -24,7 +24,7 @@ export const login = (email, password) => async (dispatch) => {
 
         try {
             dispatch(loginRequest())
-            const { data }  = await axios.post(`/api/v1/login`,{email,password});
+            const { data }  = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/api/v1/login`,{email,password});
             dispatch(loginSuccess(data))
         } catch (error) {
             dispatch(loginFail(error.response.data.message))
@@ -53,7 +53,7 @@ export const register = (name,email,password) => async (dispatch) => {
     try {
         dispatch(registerRequest())
 
-        const { data }  = await axios.post(`/api/v1/register`,{name,email,password});
+        const { data }  = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/api/v1/register`,{name,email,password});
         dispatch(registerSuccess(data))
     } catch (error) {
         dispatch(registerFail(error.response.data.message))
@@ -65,7 +65,7 @@ export const register = (name,email,password) => async (dispatch) => {
 export const logout =  async (dispatch) => {
 
     try {
-        await axios.get(`/api/v1/logout`);
+        await axios.get(`${process.env.REACT_APP_BACKEND_URL}/api/v1/logout`);
         dispatch(logoutSuccess())
     } catch (error) {
         dispatch(logoutFail)
@@ -78,7 +78,7 @@ export const updateProfile = (name,email,gender,mobile,country,designation) => a
     try {
         dispatch(updateProfileRequest())
 
-        const { data }  = await axios.put(`/api/v1/update`,{name,email,gender,mobile,country,designation});
+        const { data }  = await axios.put(`${process.env.REACT_APP_BACKEND_URL}/api/v1/update`,{name,email,gender,mobile,country,designation});
         dispatch(updateProfileSuccess(data))
     } catch (error) {
         dispatch(updateProfileFail(error.response.data.message))
