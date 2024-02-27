@@ -3,6 +3,7 @@ import {useEffect, useState} from 'react';
  import { register, clearAuthError,registerClear } from '../actions/userActions'
  import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
+import validator from 'validator'
 
 export default function Register() {
     const [name, setName] = useState("")
@@ -16,6 +17,20 @@ export default function Register() {
 
     const submitHandler = (e) => {
         e.preventDefault();
+        if(!name || !email || !password || !conPassword ){
+            toast("Please enter the required details", {
+                position: "bottom-center",
+                type: 'error',
+             })
+             return
+            }
+        if (!validator.isEmail(email)) {
+            toast("Please enter valid email address", {
+                position: "bottom-center",
+                type: 'error',
+             })
+             return
+            }
         if(password !== conPassword){
             toast("Passwords did not match", {
                 position: "bottom-center",

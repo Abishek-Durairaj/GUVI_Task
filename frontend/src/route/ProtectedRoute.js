@@ -5,7 +5,7 @@ import Loader from '../components/Loader';
 export default function ProtectedRoute ({children}) {
      const { isAuthenticated, loading } = useSelector(state => state.authState)
 
-     if(!isAuthenticated && !loading) {
+     if(!isAuthenticated ) {
          return <Navigate to="/login" />
      }
 
@@ -14,9 +14,9 @@ export default function ProtectedRoute ({children}) {
     }
 
 
-     if(loading) {
-         return <Loader/>
-     }
+    //  if(loading) {
+    //      return <Loader/>
+    //  }
 
    
 }
