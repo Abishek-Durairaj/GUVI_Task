@@ -14,10 +14,7 @@ dotenv.config({path:path.join(__dirname,"config/config.env")});
 
 app.use(express.json());
 app.use(cookieParser());
-app.use(cors({
-    origin: "https://guvi-task-4rpp.onrender.com",
-    methods: ["GET","POST","PUT"],
-}))
+app.use(cors());
 
 //Register User - /api/v1/register
 app.post('/api/v1/register',async (req, res, next) => {
